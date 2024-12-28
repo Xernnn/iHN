@@ -11,7 +11,6 @@ import pytesseract
 from PIL import Image
 import easyocr
 
-# Coordinates dictionary for better maintenance
 COORDS = {
     'start_close': (1794, 808),
     'more': (1894, 811),
@@ -44,13 +43,11 @@ COORDS = {
     'hoan_tat': (962, 748),
 }
 
-# Set Tesseract path if it's not in PATH (Windows example)
+# Set Tesseract path if it's not in PATH 
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-# Initialize EasyOCR reader globally
 reader = easyocr.Reader(['en'])
 
-# Add these lists at the top of the file with other imports
 surnames = ["Nguyen", "Tran", "Le", "Pham", "Huynh", "Hoang", "Vu", "Vo", "Dang", "Bui", "Do", "Ho"]
 middle_names = ["Van", "Thi", "Hong", "Ngoc", "Minh", "Quoc", "Duc", "Thanh", "Tan", "Xuan", "Anh", "Phuong"]
 given_names = ["An", "Binh", "Cuong", "Duy", "Huong", "Lan", "Linh", "Mai", "Nam", "Phuc", "Quan", "Trang", "Tuan", "Vy", "Yen"]
@@ -64,8 +61,7 @@ street_names = [
     "Giap Nhat"
 ]
 
-# Add at the top with other global variables
-account_counter = 25
+account_counter = 1
 
 def click(x, y):
     """Function to perform a quick click at specified coordinates"""
@@ -112,7 +108,6 @@ def multiplayer_sequence():
     """Handle the multiplayer setup sequence with color check"""
     print("Starting multiplayer sequence...")
     
-    # Initial sequence
     click_position('start_close')
     time.sleep(0.2)
     click_position('confirm_delete')
@@ -353,15 +348,15 @@ def main():
             
             # Try first registration
             if not ihanoi_sequence():
-                continue  # If failed, restart from multiplayer
+                continue
                 
             # Try second registration
             if not ihanoi_sequence():
-                continue  # If failed, restart from multiplayer
+                continue  
                 
             # Try third registration
             if not ihanoi_sequence():
-                continue  # If failed, restart from multiplayer
+                continue  
             
     except KeyboardInterrupt:
         print(f"\nProgram stopped by user. Total accounts created: {account_counter}")
