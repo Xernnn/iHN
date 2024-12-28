@@ -65,7 +65,7 @@ street_names = [
 ]
 
 # Add at the top with other global variables
-account_counter = 20
+account_counter = 25
 
 def click(x, y):
     """Function to perform a quick click at specified coordinates"""
@@ -221,10 +221,38 @@ def random_street_name():
     """Randomly select a street name from the list"""
     return random.choice(street_names)
 
+def log_account(name, phone, address, success=True):
+    """Log account information to a file"""
+    global account_counter
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    
+    try:
+        with open('account_log.txt', 'a', encoding='utf-8') as f:
+            if success:
+                log_entry = f"[{timestamp}] Account {account_counter} - {name} - {phone} - {address}\n"
+            else:
+                log_entry = f"[{timestamp}] ERROR: OTP Failed for phone {phone}\n"
+            
+            # Also write to beginning of file
+            with open('account_log.txt', 'r', encoding='utf-8') as original:
+                content = original.read()
+            with open('account_log.txt', 'w', encoding='utf-8') as modified:
+                modified.write(log_entry + content)
+                
+        print(f"Logged: {log_entry.strip()}")
+    except Exception as e:
+        print(f"Error logging to file: {e}")
+
 def ihanoi_sequence():
     global account_counter
     """Handle the iHanoi registration sequence"""
     print("Starting iHanoi registration sequence...")
+    
+    # Generate information early to log in case of failure
+    phone_number = enter_phone_number()
+    random_name = generate_vietnamese_name()
+    address = random_street_name()
+    
     click_position('dki')
     time.sleep(2.5)
     
@@ -232,7 +260,6 @@ def ihanoi_sequence():
     click_position('sdt')
     time.sleep(0.5)
     
-    phone_number = enter_phone_number()
     print(phone_number)
     pyautogui.typewrite(phone_number)
     time.sleep(0.5)
@@ -262,6 +289,7 @@ def ihanoi_sequence():
         time.sleep(1)
     
     if not otp:
+        log_account(random_name, phone_number, address, success=False)
         print("Failed to get OTP, restarting from multiplayer sequence")
         return False
 
@@ -276,7 +304,6 @@ def ihanoi_sequence():
     # Personal information
     click_position('ho_ten')
     time.sleep(1)
-    random_name = generate_vietnamese_name()
     print(f"Using name: {random_name}")
     pyautogui.typewrite(random_name)
     time.sleep(1)
@@ -294,7 +321,6 @@ def ihanoi_sequence():
     
     click_position('so_nha')
     time.sleep(1)
-    address = random_street_name()
     print(f"Using address: {address}")
     pyautogui.typewrite(address)
     time.sleep(0.5)
@@ -313,7 +339,8 @@ def ihanoi_sequence():
     click_position('hoan_tat')
     time.sleep(3.5)
     
-    account_counter += 1  # Increment counter after successful completion
+    account_counter += 1
+    log_account(random_name, phone_number, address)  # Log successful account
     print(f"\nTotal accounts created: {account_counter}")
     return True
 
