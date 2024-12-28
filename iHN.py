@@ -9,7 +9,6 @@ import re
 import random
 import pytesseract
 from PIL import Image
-import easyocr
 
 COORDS = {
     'start_close': (1794, 808),
@@ -45,8 +44,6 @@ COORDS = {
 
 # Set Tesseract path if it's not in PATH 
 # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
-reader = easyocr.Reader(['en'])
 
 surnames = ["Nguyen", "Tran", "Le", "Pham", "Huynh", "Hoang", "Vu", "Vo", "Dang", "Bui", "Do", "Ho"]
 middle_names = ["Van", "Thi", "Hong", "Ngoc", "Minh", "Quoc", "Duc", "Thanh", "Tan", "Xuan", "Anh", "Phuong"]
@@ -162,31 +159,36 @@ def enter_phone_number():
 
 def get_otp_from_screen():
     """
-    Capture and extract OTP digits using EasyOCR
-    Box coordinates: (160, 300) to (560, 360)
+    Capture and extract OTP digits using Tesseract
+    Focused on large, clear digits
     """
     try:
-        # Take screenshot of only the OTP box region
+        # Take screenshot of the OTP box region
         screenshot = pyautogui.screenshot(region=(200, 260, 500, 100))
         img = np.array(screenshot)
         
         # Convert to grayscale
         gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         
-        # Enhance contrast
-        gray = cv2.convertScaleAbs(gray, alpha=1.5, beta=0)
+        # Increase contrast dramatically
+        gray = cv2.convertScaleAbs(gray, alpha=3.0, beta=0)
         
-        # Simple threshold
-        _, thresh = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY)
+        # Aggressive thresholding
+        _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+        
+        # Dilate to connect digit parts
+        kernel = np.ones((2,2), np.uint8)
+        thresh = cv2.dilate(thresh, kernel, iterations=1)
         
         # Save debug image
         cv2.imwrite('otp_debug.png', thresh)
         
-        # Use EasyOCR to detect digits
-        results = reader.readtext(thresh, allowlist='0123456789')
+        # Use Tesseract with specific config for digits only
+        custom_config = r'--oem 3 --psm 7 -c tessedit_char_whitelist=0123456789'
+        text = pytesseract.image_to_string(thresh, config=custom_config)
         
-        # Combine all detected digits
-        digits = ''.join([result[1] for result in results if result[1].isdigit()])
+        # Clean up the result
+        digits = ''.join(filter(str.isdigit, text))
         
         # If we have exactly 6 digits
         if len(digits) == 6:
@@ -269,7 +271,7 @@ def ihanoi_sequence():
     pyautogui.typewrite(phone_number)
     time.sleep(0.5)
     click_position('tiep_tuc2')
-    time.sleep(0.5)
+    time.sleep(3)
     
     # Try to get OTP
     max_attempts = 8
