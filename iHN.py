@@ -65,7 +65,7 @@ street_names = [
 ]
 
 # Add at the top with other global variables
-account_counter = 10
+account_counter = 20
 
 def click(x, y):
     """Function to perform a quick click at specified coordinates"""
@@ -222,7 +222,7 @@ def random_street_name():
     return random.choice(street_names)
 
 def ihanoi_sequence():
-    global account_counter  # Add this line to access the global counter
+    global account_counter
     """Handle the iHanoi registration sequence"""
     print("Starting iHanoi registration sequence...")
     click_position('dki')
@@ -237,21 +237,20 @@ def ihanoi_sequence():
     pyautogui.typewrite(phone_number)
     time.sleep(0.5)
     click_position('tiep_tuc1')
-    time.sleep(0.5)  # Wait for OTP screen
+    time.sleep(0.5)
     
-    # OTP handling with faster retries
-    # click_position('otp')
-    # time.sleep(1)
+    # OTP handling
     click_position('ma_moi')
     time.sleep(2)
     click_position('nhap_sdt')
     time.sleep(0.5)
     pyautogui.typewrite(phone_number)
-    time.sleep(0.5)  # Wait for OTP to appear
+    time.sleep(0.5)
     click_position('tiep_tuc2')
     time.sleep(0.5)
     
-    max_attempts = 8  # Increased attempts
+    # Try to get OTP
+    max_attempts = 8
     otp = None
     
     for attempt in range(max_attempts):
@@ -260,14 +259,13 @@ def ihanoi_sequence():
             print(f"Found OTP: {otp}")
             break
         print(f"OTP attempt {attempt + 1} failed, retrying...")
-        time.sleep(1)  # Slightly longer wait between attempts
+        time.sleep(1)
     
     if not otp:
-        print("Failed to get OTP")
+        print("Failed to get OTP, restarting from multiplayer sequence")
         return False
-        
-    
-    
+
+    # Continue with rest of sequence...
     click_position('ve_cu')
     time.sleep(0.5)
     pyautogui.typewrite(otp)
@@ -320,14 +318,23 @@ def ihanoi_sequence():
     return True
 
 def main():
-    global account_counter  # Add this line to access the global counter
+    global account_counter
     print("Program started. Press Ctrl+C to stop at any time.")
     try:
         while True:
             multiplayer_sequence()
-            ihanoi_sequence()
-            ihanoi_sequence()
-            ihanoi_sequence()
+            
+            # Try first registration
+            if not ihanoi_sequence():
+                continue  # If failed, restart from multiplayer
+                
+            # Try second registration
+            if not ihanoi_sequence():
+                continue  # If failed, restart from multiplayer
+                
+            # Try third registration
+            if not ihanoi_sequence():
+                continue  # If failed, restart from multiplayer
             
     except KeyboardInterrupt:
         print(f"\nProgram stopped by user. Total accounts created: {account_counter}")
