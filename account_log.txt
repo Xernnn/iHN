@@ -1,0 +1,80 @@
+[2024-12-28 20:56:20] ERROR: OTP Failed for phone 0924831582
+[2024-12-28 20:56:03] Account 70 - Huynh Duy - 0933524564 - Quan Nhan
+[2024-12-28 20:55:09] ERROR: OTP Failed for phone 0955925993
+[2024-12-28 20:54:28] ERROR: OTP Failed for phone 0998614543
+[2024-12-28 20:54:11] Account 69 - Vo Xuan Linh - 0936529389 - Nguyen Tuan
+[2024-12-28 20:53:17] ERROR: OTP Failed for phone 0954286101
+[2024-12-28 20:52:36] ERROR: OTP Failed for phone 0932435617
+[2024-12-28 20:51:55] ERROR: OTP Failed for phone 0943595572
+[2024-12-28 20:51:38] Account 68 - Pham Minh Binh - 0934056403 - Nguyen Tuan
+[2024-12-28 20:50:46] ERROR: OTP Failed for phone 0983438074
+[2024-12-28 20:50:29] Account 67 - Pham Huong - 0944238432 - Quan Nhan
+[2024-12-28 20:49:36] ERROR: OTP Failed for phone 0981733801
+[2024-12-28 20:48:55] ERROR: OTP Failed for phone 0971485677
+[2024-12-28 20:48:38] Account 66 - Vo Yen - 0976552287 - Quan Nhan
+[2024-12-28 20:48:08] Account 65 - Pham Huong - 0940706966 - Giap Nhat
+[2024-12-28 20:47:15] ERROR: OTP Failed for phone 0997867342
+[2024-12-28 20:46:34] ERROR: OTP Failed for phone 0946644062
+[2024-12-28 20:46:17] Account 64 - Dang Phuong Trang - 0961611830 - Nguyen Xuan Linh
+[2024-12-28 20:45:48] Account 63 - Bui Linh - 0916961126 - Giap Nhat
+[2024-12-28 20:44:55] Account 62 - Pham Vy - 0908606245 - Le Van Luong
+[2024-12-28 20:44:26] Account 61 - Nguyen An - 0975759866 - Quan Nhan
+[2024-12-28 20:43:58] Account 60 - Vu Duy - 0987430475 - Nguyen Tuan
+[2024-12-28 20:43:04] ERROR: OTP Failed for phone 0929408885
+[2024-12-28 20:42:23] ERROR: OTP Failed for phone 0963986398
+[2024-12-28 20:41:42] ERROR: OTP Failed for phone 0923395220
+[2024-12-28 20:41:25] Account 59 - Dang Anh An - 0916366101 - Le Van Luong
+[2024-12-28 20:40:33] ERROR: OTP Failed for phone 0954489903
+[2024-12-28 20:39:52] Account 58 - Tran Cuong - 0914621465 - Nguy Nhu Kon Tum
+[2024-12-28 20:39:23] Account 57 - Do Thanh Duy - 0971038336 - Nguyen Xuan Linh
+[2024-12-28 20:38:55] Account 56 - Vu Hong Duy - 0905085422 - Nhan Hoa
+[2024-12-28 20:38:02] ERROR: OTP Failed for phone 0960496989
+[2024-12-28 20:37:21] ERROR: OTP Failed for phone 0960451033
+[2024-12-28 20:36:40] ERROR: OTP Failed for phone 0964143496
+[2024-12-28 20:36:23] Account 55 - Ho Lan - 0960666609 - Le Van Luong
+[2024-12-28 20:35:53] Account 54 - Vu Tuan - 0902366855 - Nguyen Xuan Linh
+[2024-12-28 20:35:00] Account 53 - Dang Yen - 0916190646 - Quan Nhan
+[2024-12-28 20:34:30] Account 52 - Ho Quoc Vy - 0995824366 - Nguy Nhu Kon Tum
+[2024-12-28 20:34:00] Account 51 - Ho Hong Binh - 0910012354 - Le Van Luong
+[2024-12-28 20:33:07] ERROR: OTP Failed for phone 0936964366
+[2024-12-28 20:32:26] ERROR: OTP Failed for phone 0949954504
+[2024-12-28 20:31:45] Account 50 - Hoang Hong Quan - 0929033378 - Nguy Nhu Kon Tum
+[2024-12-28 20:31:16] Account 49 - Huynh Tan Duy - 0911309346 - Nguy Nhu Kon Tum
+[2024-12-28 20:30:48] Account 48 - Le Minh Mai - 0934706522 - Quan Nhan
+[2024-12-28 20:29:55] ERROR: OTP Failed for phone 0938456440
+[2024-12-28 20:29:38] Account 47 - Vu Hong Nam - 0922576420 - Nguy Nhu Kon Tum
+[2024-12-28 20:29:09] Account 46 - Pham Minh Vy - 0901470977 - Quan Nhan
+[2024-12-28 20:28:16] Account 45 - Tran Thi Duy - 0979215755 - Quan Nhan
+[2024-12-28 20:27:48] Account 44 - Nguyen Lan - 0901546573 - Quan Nhan
+[2024-12-28 20:27:18] Account 43 - Tran Phuong Tuan - 0917008205 - Giap Nhat
+[2024-12-28 20:26:25] ERROR: OTP Failed for phone 0953408775
+[2024-12-28 20:26:08] Account 42 - Bui Hong Vy - 0933610888 - Nguyen Tuan
+[2024-12-28 20:25:39] Account 41 - Nguyen Ngoc An - 0929907634 - Nguyen Tuan
+[2024-12-28 20:24:47] ERROR: OTP Failed for phone 0987733272
+[2024-12-28 20:24:30] Account 40 - Ho Duy - 0985291817 - Nguyen Tuan
+[2024-12-28 20:24:00] Account 39 - Tran Xuan Vy - 0985765667 - Nhan Hoa
+[2024-12-28 20:23:08] ERROR: OTP Failed for phone 0976078460
+[2024-12-28 20:22:51] Account 38 - Dang Vy - 0996884098 - Le Van Luong
+[2024-12-28 20:21:57] ERROR: OTP Failed for phone 0914130068
+[2024-12-28 20:21:40] Account 37 - Bui An - 0982366229 - Nguy Nhu Kon Tum
+[2024-12-28 20:20:47] ERROR: OTP Failed for phone 0978981994
+[2024-12-28 20:20:06] ERROR: OTP Failed for phone 0971239479
+[2024-12-28 20:19:25] ERROR: OTP Failed for phone 0995566840
+[2024-12-28 20:19:08] Account 36 - Pham Quan - 0928298395 - Quan Nhan
+[2024-12-28 20:18:15] ERROR: OTP Failed for phone 0989243287
+[2024-12-28 20:17:58] Account 35 - Huynh Thanh Lan - 0920141451 - Le Van Luong
+[2024-12-28 20:17:05] ERROR: OTP Failed for phone 0964656009
+[2024-12-28 20:16:48] Account 34 - Huynh Yen - 0914276200 - Giap Nhat
+[2024-12-28 20:15:54] ERROR: OTP Failed for phone 0962590246
+[2024-12-28 20:15:37] Account 33 - Vo Xuan Binh - 0960443995 - Le Van Luong
+[2024-12-28 20:15:09] Account 32 - Ho Thi Phuc - 0989152155 - Giap Nhat
+[2024-12-28 20:14:15] ERROR: OTP Failed for phone 0993862756
+[2024-12-28 20:13:34] ERROR: OTP Failed for phone 0914659563
+[2024-12-28 20:13:17] Account 31 - Do Vy - 0964530988 - Nguy Nhu Kon Tum
+[2024-12-28 20:12:23] Account 30 - Dang Tuan - 0906128746 - Giap Nhat
+[2024-12-28 20:11:54] Account 29 - Bui Thi Huong - 0993624101 - Le Van Luong
+[2024-12-28 20:11:25] Account 28 - Do Lan - 0958296422 - Quan Nhan
+[2024-12-28 20:10:32] ERROR: OTP Failed for phone 0972228549
+[2024-12-28 20:10:15] Account 27 - Nguyen Nam - 0900733932 - Nguyen Tuan
+[2024-12-28 20:09:46] Account 26 - Nguyen Ngoc Linh - 0929733785 - Quan Nhan
+[2024-12-28 20:08:53] ERROR: OTP Failed for phone 0987626280
