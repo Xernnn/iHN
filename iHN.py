@@ -162,45 +162,49 @@ def get_otp_from_screen():
     Capture and extract OTP digits using Tesseract
     Focused on large, clear digits
     """
-    try:
-        # Take screenshot of the OTP box region
-        screenshot = pyautogui.screenshot(region=(200, 260, 500, 100))
-        img = np.array(screenshot)
-        
-        # Convert to grayscale
-        gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        
-        # Increase contrast dramatically
-        gray = cv2.convertScaleAbs(gray, alpha=3.0, beta=0)
-        
-        # Aggressive thresholding
-        _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
-        
-        # Dilate to connect digit parts
-        kernel = np.ones((2,2), np.uint8)
-        thresh = cv2.dilate(thresh, kernel, iterations=1)
-        
-        # Save debug image
-        cv2.imwrite('otp_debug.png', thresh)
-        
-        # Use Tesseract with specific config for digits only
-        custom_config = r'--oem 3 --psm 7 -c tessedit_char_whitelist=0123456789'
-        text = pytesseract.image_to_string(thresh, config=custom_config)
-        
-        # Clean up the result
-        digits = ''.join(filter(str.isdigit, text))
-        
-        # If we have exactly 6 digits
-        if len(digits) == 6:
-            print(f"Found OTP: {digits}")
-            return digits
+    max_attempts = 5
+    for attempt in range(max_attempts):
+        try:
+            # Take screenshot of the OTP box region
+            screenshot = pyautogui.screenshot(region=(200, 260, 500, 100))
+            img = np.array(screenshot)
             
-        print(f"Found {len(digits)} digits instead of 6: {digits}")
-        return None
+            # Convert to grayscale
+            gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+            
+            # Adjust contrast based on attempt number
+            alpha = 3.0 if attempt == 0 else (2.0 if attempt == 1 else 1.0)
+            gray = cv2.convertScaleAbs(gray, alpha=alpha, beta=0)
+            
+            # Aggressive thresholding
+            _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+            
+            # Dilate to connect digit parts
+            kernel = np.ones((2, 2), np.uint8)
+            thresh = cv2.dilate(thresh, kernel, iterations=1)
+            
+            # Save debug image
+            cv2.imwrite(f'otp_debug_attempt_{attempt + 1}.png', thresh)
+            
+            # Use Tesseract with specific config for digits only
+            custom_config = r'--oem 3 --psm 7 -c tessedit_char_whitelist=0123456789 -c tessedit_char_blacklist=O'
+            text = pytesseract.image_to_string(thresh, config=custom_config)
+            
+            # Clean up the result
+            digits = ''.join(filter(str.isdigit, text))
+            
+            # If we have exactly 6 digits
+            if len(digits) == 6:
+                print(f"Found OTP: {digits}")
+                return digits
+            
+            print(f"Attempt {attempt + 1}: Found {len(digits)} digits instead of 6: {digits}")
         
-    except Exception as e:
-        print(f"Error getting OTP: {e}")
-        return None
+        except Exception as e:
+            print(f"Error getting OTP on attempt {attempt + 1}: {e}")
+    
+    print("Failed to get a valid OTP after multiple attempts.")
+    return None
 
 def generate_vietnamese_name(min_words=2, max_words=3):
     """Generate a random Vietnamese name"""
@@ -239,6 +243,17 @@ def log_account(name, phone, address, success=True):
         print(f"Logged: {log_entry.strip()}")
     except Exception as e:
         print(f"Error logging to file: {e}")
+
+def check_blue_error(x, y, blue_range=(190, 200)):
+    """Check if pixel at x,y has blue value in specified range"""
+    try:
+        screenshot = pyautogui.screenshot()
+        color = screenshot.getpixel((x, y))
+        # Check blue component (color[2] for RGB)
+        return blue_range[0] <= color[2] <= blue_range[1]
+    except Exception as e:
+        print(f"Error checking color: {e}")
+        return False
 
 def ihanoi_sequence():
     global account_counter
@@ -296,7 +311,13 @@ def ihanoi_sequence():
     pyautogui.typewrite(otp)
     time.sleep(0.5)
     click_position('tiep_tuc3')
-    time.sleep(1.5)
+    time.sleep(2.5)
+    
+    # Check for blue error indicator
+    if check_blue_error(1180, 384):
+        print("Detected error indicator (blue color), restarting from multiplayer")
+        log_account(random_name, phone_number, address, success=False)
+        return False
     
     # Personal information
     click_position('ho_ten')
